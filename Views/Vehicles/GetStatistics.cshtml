@@ -1,0 +1,53 @@
+﻿@model Tuple<Dictionary<VehicleType, int>, int, decimal, Dictionary<string, int>>
+@{
+    ViewData["Title"] = "GetStatistics";
+}
+
+<h1>Garage Statistics</h1>
+
+
+<hr />
+<div>
+    <h3>Vehicles by type</h3>
+    @foreach (var element in Model.Item1)
+    {
+        <span><strong>@element.Key.Name: </strong>@element.Value</span><br />
+    }
+</div>
+<hr />
+
+<div>
+    <h3>Total parked wheels </h3>
+
+    <span>@Model.Item2</span>
+
+</div>
+<hr />
+
+<div>
+    <h3>Total parking costs</h3>
+
+    <span>@System.Math.Round(Model.Item3, 2)</span>
+
+</div>
+<hr />
+<div>
+    <h3>Vehicles by color </h3>
+    @foreach(var element in Model.Item4)
+    {
+        <span><strong>@element.Key: </strong>@element.Value</span><br />
+    }
+
+
+</div>
+
+<hr />
+@await Component.InvokeAsync("SpotStatus")
+<br>
+<canvas style="background-color: forestgreen"></canvas><span> Free</span>
+<br>
+<canvas style="background-color: gold"></canvas><span> Not Full</span>
+<br>
+<canvas style="background-color: red"></canvas><span> Full</span>
+<hr />
+
